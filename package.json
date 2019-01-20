@@ -2,8 +2,8 @@
   "name": "truewallet",
   "version": "1.0.0",
   "description": "True Wallet API for JS",
-  "main": "index.js",
-  "repository": "git@github.com:rayriffy/rayriffy-es6-boilerplate.git",
+  "main": "build/main.js",
+  "repository": "git@github.com:rayriffy/truewallet.git",
   "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
   "license": "MIT",
   "dependencies": {
