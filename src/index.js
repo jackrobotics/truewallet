@@ -69,7 +69,15 @@ exports.fetch = {
 
 exports.cashcard = {
   topup: async function(token, cashcard) {
-    // TODO: Code
+    const time = Date.now()
+    const json = await axios({
+      method: 'POST',
+      url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/topup/mobile/${time}/${token}/cashcard/${cashcard}`,
+      headers: {
+        Host: 'mobile-api-gateway.truemoney.com',
+      }
+    })
+    return json.data
   },
   buy: {
     request: async function(token, mobile, amount) {
