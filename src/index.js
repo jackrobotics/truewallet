@@ -55,7 +55,15 @@ exports.fetch = {
     return json.data.activities
   },
   txDetail: async function(token, id) {
-    // TODO: Code
+    const json = await axios({
+      method: 'GET',
+      url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/user-profile-composite/v1/users/transactions/history/detail/${id}`,
+      headers: {
+        Host: 'mobile-api-gateway.truemoney.com',
+        Authorization: token,
+      }
+    })
+    return json.data
   }
 }
 
