@@ -4,8 +4,8 @@ const crypto = require('crypto')
 var exports = (module.exports = {})
 
 exports.get = {
-  token: async function(email, pass) {
-    const json = await axios({
+  token: function(email, pass) {
+    axios({
       method: 'POST',
       url: 'https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/signin',
       headers: {
@@ -21,33 +21,48 @@ exports.get = {
         type: 'email',
       },
     })
-    return json.data.accessToken
+      .then(function(json) {
+        return json.data.accessToken
+      })
+      .catch(function(e) {
+        console.log(e.data)
+      })
   },
-  balance: async function(token) {
-    const json = await axios({
+  balance: function(token) {
+    axios({
       method: 'GET',
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/profile/balance/${token}`,
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
       },
     })
-    return json.data
+      .then(function(json) {
+        return json.data
+      })
+      .catch(function(e) {
+        console.log(e.data)
+      })
   },
-  profile: async function(token) {
-    const json = await axios({
+  profile: function(token) {
+    axios({
       method: 'GET',
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/profile/${token}`,
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
       },
     })
-    return json.data
+      .then(function(json) {
+        return json.data
+      })
+      .catch(function(e) {
+        console.log(e.data)
+      })
   },
 }
 
 exports.fetch = {
-  activity: async function(token, start, end, limit = 25) {
-    const json = await axios({
+  activity: function(token, start, end, limit = 25) {
+    axios({
       method: 'GET',
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/user-profile-composite/v1/users/transactions/history?start_date=${start}&end_date=${end}&limit=${limit}`,
       headers: {
@@ -55,10 +70,15 @@ exports.fetch = {
         Authorization: token,
       },
     })
-    return json.data.activities
+      .then(function(json) {
+        return json.data.activities
+      })
+      .catch(function(e) {
+        console.log(e.data)
+      })
   },
-  txDetail: async function(token, id) {
-    const json = await axios({
+  txDetail: function(token, id) {
+    axios({
       method: 'GET',
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/user-profile-composite/v1/users/transactions/history/detail/${id}`,
       headers: {
@@ -66,25 +86,35 @@ exports.fetch = {
         Authorization: token,
       },
     })
-    return json.data
+      .then(function(json) {
+        return json.data
+      })
+      .catch(function(e) {
+        console.log(e.data)
+      })
   },
 }
 
 exports.cashcard = {
-  topup: async function(token, cashcard) {
+  topup: function(token, cashcard) {
     const time = Date.now()
-    const json = await axios({
+    axios({
       method: 'POST',
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/topup/mobile/${time}/${token}/cashcard/${cashcard}`,
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
       },
     })
-    return json.data
+      .then(function(json) {
+        return json.data
+      })
+      .catch(function(e) {
+        console.log(e.data)
+      })
   },
   buy: {
-    request: async function(token, mobile, amount) {
-      const json = await axios({
+    request: function(token, mobile, amount) {
+      axios({
         method: 'POST',
         url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/buy/e-pin/draft/verifyAndCreate/${token}`,
         headers: {
@@ -96,11 +126,16 @@ exports.cashcard = {
           amount: amount,
         },
       })
-      return json.data
+        .then(function(json) {
+          return json.data
+        })
+        .catch(function(e) {
+          console.log(e.data)
+        })
     },
-    confirm: async function(token, draft, mobile, otp, otpRef) {
+    confirm: function(token, draft, mobile, otp, otpRef) {
       const time = Date.now()
-      const json = await axios({
+      axios({
         method: 'PUT',
         url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/buy/e-pin/confirm/${draft}/${token}`,
         headers: {
@@ -114,18 +149,28 @@ exports.cashcard = {
           timestamp: time,
         },
       })
-      return json.data
+        .then(function(json) {
+          return json.data
+        })
+        .catch(function(e) {
+          console.log(e.data)
+        })
     },
   },
 }
 
-exports.logout = async function(token) {
-  const json = await axios({
+exports.logout = function(token) {
+  axios({
     method: 'GET',
     url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/signout/${token}`,
     headers: {
       Host: 'mobile-api-gateway.truemoney.com',
     },
   })
-  return json.data
+    .then(function(json) {
+      return json.data
+    })
+    .catch(function(e) {
+      console.log(e.data)
+    })
 }
