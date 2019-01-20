@@ -1,0 +1,33 @@
+{
+  "name": "truewallet",
+  "version": "1.0.0",
+  "description": "True Wallet API for JS",
+  "main": "index.js",
+  "repository": "git@github.com:rayriffy/rayriffy-es6-boilerplate.git",
+  "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "backpack-core": "^0.8.3",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.11.1",
+    "eslint-config-prettier": "^3.5.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "^1.15.3"
+  },
+  "scripts": {
+    "build": "backpack build",
+    "dev": "backpack",
+    "format": "prettier --write --no-semi --list-different './src/**/*.js'",
+    "lint": "eslint ./src/**/*.js",
+    "start": "node ./build/main.js"
+  }
+}
