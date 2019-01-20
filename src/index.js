@@ -1,7 +1,7 @@
 import axios from 'axios'
 import crypto from 'crypto'
 
-let exports = module.exports = {};
+let exports = (module.exports = {})
 
 exports.get = {
   token: async function(email, pass) {
@@ -14,9 +14,12 @@ exports.get = {
       },
       data: {
         username: email,
-        password: crypto.createHash('sha1').update(pass).digest('hex'),
-        type: 'email'
-      }
+        password: crypto
+          .createHash('sha1')
+          .update(pass)
+          .digest('hex'),
+        type: 'email',
+      },
     })
     return json.data.accessToken
   },
@@ -26,7 +29,7 @@ exports.get = {
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/profile/balance/${token}`,
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
-      }
+      },
     })
     return json.data
   },
@@ -36,10 +39,10 @@ exports.get = {
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/profile/${token}`,
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
-      }
+      },
     })
     return json.data
-  }
+  },
 }
 
 exports.fetch = {
@@ -50,7 +53,7 @@ exports.fetch = {
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
         Authorization: token,
-      }
+      },
     })
     return json.data.activities
   },
@@ -61,10 +64,10 @@ exports.fetch = {
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
         Authorization: token,
-      }
+      },
     })
     return json.data
-  }
+  },
 }
 
 exports.cashcard = {
@@ -75,7 +78,7 @@ exports.cashcard = {
       url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/topup/mobile/${time}/${token}/cashcard/${cashcard}`,
       headers: {
         Host: 'mobile-api-gateway.truemoney.com',
-      }
+      },
     })
     return json.data
   },
@@ -91,7 +94,7 @@ exports.cashcard = {
         data: {
           recipientMobileNumber: mobile,
           amount: amount,
-        }
+        },
       })
       return json.data
     },
@@ -109,11 +112,11 @@ exports.cashcard = {
           otpString: otp,
           otpRefCode: otpRef,
           timestamp: time,
-        }
+        },
       })
       return json.data
-    }
-  }
+    },
+  },
 }
 
 exports.logout = async function(token) {
@@ -122,7 +125,7 @@ exports.logout = async function(token) {
     url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/signout/${token}`,
     headers: {
       Host: 'mobile-api-gateway.truemoney.com',
-    }
+    },
   })
   return json.data
 }
