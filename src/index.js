@@ -1,7 +1,7 @@
-import axios from 'axios'
-import crypto from 'crypto'
+const axios = require('axios')
+const crypto = require('crypto')
 
-let exports = (module.exports = {})
+var exports = (module.exports = {})
 
 exports.get = {
   token: async function(email, pass) {
