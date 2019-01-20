@@ -96,7 +96,22 @@ exports.cashcard = {
       return json.data
     },
     confirm: async function(token, draft, mobile, otp, otpRef) {
-      // TODO: Code
+      const time = Date.now()
+      const json = await axios({
+        method: 'PUT',
+        url: `https://mobile-api-gateway.truemoney.com/mobile-api-gateway/api/v1/buy/e-pin/confirm/${draft}/${token}`,
+        headers: {
+          Host: 'mobile-api-gateway.truemoney.com',
+          'Content-Type': 'application/json',
+        },
+        data: {
+          mobileNumber: mobile,
+          otpString: otp,
+          otpRefCode: otpRef,
+          timestamp: time,
+        }
+      })
+      return json.data
     }
   }
 }
