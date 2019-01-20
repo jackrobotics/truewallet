@@ -1,6 +1,6 @@
 {
   "name": "truewallet",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "True Wallet API for JS",
   "main": "build/main.js",
   "repository": "git@github.com:rayriffy/truewallet.git",
