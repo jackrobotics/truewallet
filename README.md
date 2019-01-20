@@ -7,22 +7,132 @@ Install
 -------
 
 ```bash
-yarn
+yarn add truewallet
 ```
 
-Usage
------
+Examples
+--------
 
-For for development
+### Login and Logout
 
-```bash
-yarn dev
+```javascript
+const truewallet = require('truewallet')
+
+// Get token with email and password
+var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+
+// Logout
+truewallet.logout(token)
 ```
 
-For production build
+### Check balance
 
-```bash
-yarn build
+```javascript
+const truewallet = require('truewallet')
+
+// Get token with email and password
+var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+
+// Check scuccessfully login
+if(token !== null) {
+  var profile = truewallet.get.profle(token)
+  console.log(profile)
+
+  // Logout
+  truewallet.logout(token)
+}
 ```
 
-Your complied files will be located at `./build`
+### Topup TrueMoney Cashcard
+
+```javascript
+const truewallet = require('truewallet')
+
+// Get token with email and password
+var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+
+// Check scuccessfully login
+if(token !== null) {
+  var topup = truewallet.cashcard.topup(token, '00000000000000')
+
+  // Logout
+  truewallet.logout(token)
+}
+```
+
+### Fetch Tx
+
+```javascript
+const moment = require('moment')
+const truewallet = require('truewallet')
+
+// Get token with email and password
+var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+
+// Check scuccessfully login
+if(token !== null) {
+  var startDate= moment().subtract(1, 'days').format('YYYY-MM-DD')
+  var endDate= moment().add(1, 'days').format('YYYY-MM-DD')
+
+  var activities = truewallet.fetch.activity(token, startDate, endDate)
+  console.log(activities)
+
+  // Logout
+  truewallet.logout(token)
+}
+```
+
+### Get Tx detailes by ID
+
+```javascript
+const moment = require('moment')
+const truewallet = require('truewallet')
+
+// Get token with email and password
+var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+
+// Check scuccessfully login
+if(token !== null) {
+  var startDate= moment().subtract(1, 'days').format('YYYY-MM-DD')
+  var endDate= moment().add(1, 'days').format('YYYY-MM-DD')
+
+  var activities = truewallet.fetch.activity(token, startDate, endDate)
+
+  activities.forEach(function(activity) {
+    if(activity.original_action === 'creditor') {
+      var data = truewallet.fetch.txDetail(token, data.report_id)
+
+      // Tx ID
+      var txId = data.section4.column2.cell1.value
+
+      // Value
+      var txValue = data.section3.column1.cell1.value.replace(',', '')
+
+      console.log(txId)
+      console.log(txValue)
+    }
+  })
+
+  // Logout
+  truewallet.logout(token)
+}
+```
+
+Contributing
+------------
+
+We welcome all contributions by sending PR to this repository.
+
+Need Help ?
+-----------
+
+If you need help with anything, here're following methods:
+
+#### Create an Issue
+
+If you have something you want to discuss in detail, or have hit an issue which you believe others will also have in deployment or development of the system, [opening an issue](https://github.com/rayriffy/truewallet/issues) is the best way to get help. It creates a permanent resource for others wishing to contribute to conversation.
+
+Donation
+--------
+
+You can feed me by donating money via [Bank Account](https://storage.rayriffy.com/files/image/BANK_ACCOUNT.png) or [PromptPay](https://storage.rayriffy.com/files/image/PROMPTPAY.png)
