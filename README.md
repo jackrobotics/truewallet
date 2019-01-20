@@ -1,6 +1,11 @@
 truewallet
 ==========
 
+[![Build Status](https://travis-ci.org/rayriffy/truewallet.svg?branch=master)](https://travis-ci.org/rayriffy/truewallet)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/89a51596e35441998bee1025c0363143)](https://www.codacy.com/app/rayriffy/truewallet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rayriffy/truewallet&amp;utm_campaign=Badge_Grade)
+[![npm](https://img.shields.io/npm/v/truewallet.svg)](https://www.npmjs.com/package/truewallet)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 True Wallet API for JS
 
 Install
@@ -123,12 +128,12 @@ Contributing
 
 We welcome all contributions by sending PR to this repository.
 
-Need Help ?
------------
+Need Help
+---------
 
 If you need help with anything, here're following methods:
 
-#### Create an Issue
+### Create an Issue
 
 If you have something you want to discuss in detail, or have hit an issue which you believe others will also have in deployment or development of the system, [opening an issue](https://github.com/rayriffy/truewallet/issues) is the best way to get help. It creates a permanent resource for others wishing to contribute to conversation.
 
