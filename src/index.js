@@ -16,16 +16,16 @@ exports.get = {
         username: email,
         password: crypto
           .createHash('sha1')
-          .update(pass)
+          .update(email + pass)
           .digest('hex'),
         type: 'email',
       },
     })
       .then(function(json) {
-        return json.data.accessToken
+        return json.data.data.accessToken
       })
       .catch(function(e) {
-        console.log(e.data)
+        console.log(e.response.data)
       })
   },
   balance: function(token) {
@@ -37,7 +37,7 @@ exports.get = {
       },
     })
       .then(function(json) {
-        return json.data
+        return json.data.data
       })
       .catch(function(e) {
         console.log(e.data)
@@ -52,7 +52,7 @@ exports.get = {
       },
     })
       .then(function(json) {
-        return json.data
+        return json.data.data
       })
       .catch(function(e) {
         console.log(e.data)
@@ -71,7 +71,7 @@ exports.fetch = {
       },
     })
       .then(function(json) {
-        return json.data.activities
+        return json.data.data.activities
       })
       .catch(function(e) {
         console.log(e.data)
@@ -87,7 +87,7 @@ exports.fetch = {
       },
     })
       .then(function(json) {
-        return json.data
+        return json.data.data
       })
       .catch(function(e) {
         console.log(e.data)
@@ -106,7 +106,7 @@ exports.cashcard = {
       },
     })
       .then(function(json) {
-        return json.data
+        return json.data.data
       })
       .catch(function(e) {
         console.log(e.data)
@@ -127,7 +127,7 @@ exports.cashcard = {
         },
       })
         .then(function(json) {
-          return json.data
+          return json.data.data
         })
         .catch(function(e) {
           console.log(e.data)
@@ -150,7 +150,7 @@ exports.cashcard = {
         },
       })
         .then(function(json) {
-          return json.data
+          return json.data.data
         })
         .catch(function(e) {
           console.log(e.data)
@@ -168,7 +168,7 @@ exports.logout = function(token) {
     },
   })
     .then(function(json) {
-      return json.data
+      return json.data.data
     })
     .catch(function(e) {
       console.log(e.data)
