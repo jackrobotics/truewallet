@@ -40,7 +40,7 @@ exports.get = {
         return json.data.data
       })
       .catch(function(e) {
-        console.log(e.data)
+        console.log(e.response.data)
       })
   },
   profile: function(token) {
@@ -55,7 +55,7 @@ exports.get = {
         return json.data.data
       })
       .catch(function(e) {
-        console.log(e.data)
+        console.log(e.response.data)
       })
   },
 }
@@ -74,7 +74,7 @@ exports.fetch = {
         return json.data.data.activities
       })
       .catch(function(e) {
-        console.log(e.data)
+        console.log(e.response.data)
       })
   },
   txDetail: function(token, id) {
@@ -90,7 +90,7 @@ exports.fetch = {
         return json.data.data
       })
       .catch(function(e) {
-        console.log(e.data)
+        console.log(e.response.data)
       })
   },
 }
@@ -109,7 +109,7 @@ exports.cashcard = {
         return json.data.data
       })
       .catch(function(e) {
-        console.log(e.data)
+        console.log(e.response.data)
       })
   },
   buy: {
@@ -130,7 +130,7 @@ exports.cashcard = {
           return json.data.data
         })
         .catch(function(e) {
-          console.log(e.data)
+          console.log(e.response.data)
         })
     },
     confirm: function(token, draft, mobile, otp, otpRef) {
@@ -153,7 +153,7 @@ exports.cashcard = {
           return json.data.data
         })
         .catch(function(e) {
-          console.log(e.data)
+          console.log(e.response.data)
         })
     },
   },
@@ -171,6 +171,6 @@ exports.logout = function(token) {
       return json.data.data
     })
     .catch(function(e) {
-      console.log(e.data)
+      console.log(e.response.data)
     })
 }
